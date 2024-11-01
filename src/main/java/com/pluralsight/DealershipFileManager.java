@@ -1,11 +1,13 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class DealershipFileManager {
+    private String filePath;
+
+    public DealershipFileManager(String filePath){
+        this.filePath = filePath;
+    }
 
 
 
@@ -43,8 +45,21 @@ public class DealershipFileManager {
 return dealership;
     }
 
-      public void saveDealership(){
-
+    public void saveDealership(Dealership dealership) {
+        try (FileWriter writer = new FileWriter("src/main/resources/inventory.csv")) {
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                writer.write(String.format("%d|%d|%s|%s|%s|%s|%d|%.2f%n",
+                        vehicle.getVin(),
+                        vehicle.getYear(),
+                        vehicle.getMake(),
+                        vehicle.getModel(),
+                        vehicle.getVehicleType(),
+                        vehicle.getColor(),
+                        vehicle.getOdometer(),
+                        vehicle.getVehiclesByPrice()));
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving the dealership data: " + e.getMessage());
+        }
     }
-
 }

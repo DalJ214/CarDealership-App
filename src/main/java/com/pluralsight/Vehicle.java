@@ -9,7 +9,7 @@ public class Vehicle {
     private int vin, year, odometer;
     private String make , model, vehicleType, color;
 
-    private final ArrayList<Vehicle> vehicles = new ArrayList<>();
+
 
     public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double vehiclesByPrice) {
         this.vehiclesByPrice = vehiclesByPrice;
@@ -85,6 +85,11 @@ public class Vehicle {
     public void setColor(String color) {
         this.color = color;
     }
+    @Override
+    public String toString() {
+        return year + " " + make + " " + model + " - $" + vehiclesByPrice + " (" + odometer + " miles)";
+    }
+
 }
 
 

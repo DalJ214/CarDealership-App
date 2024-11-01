@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,4 +83,6 @@ public List<Vehicle> getVehiclesByType(String Type){
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }
+
