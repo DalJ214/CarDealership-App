@@ -13,7 +13,7 @@ public class DealershipFileManager {
 
     public Dealership getDealership() {
 
-        Dealership dealership = new Dealership();
+        Dealership dealership = new Dealership("Cowboy cars","2146 Arroyo lane", "324-355-0003");
 
         try {
             BufferedReader bufRead = new BufferedReader(new FileReader("src/main/resources/inventory.csv"));
@@ -22,6 +22,10 @@ public class DealershipFileManager {
 
             while ((line = bufRead.readLine()) != null) {
                 String[] parts = line.split("\\|");
+                if (parts.length < 8) {
+                    System.out.println("Skip line " + line);
+                    continue; //will skip line and continue
+                }
                 {
                     int vin = Integer.parseInt(parts[0].trim());
                     int year = Integer.parseInt(parts[1].trim());
@@ -35,8 +39,12 @@ public class DealershipFileManager {
 
                     Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, vehiclesByPrice);
                     dealership.addVehicle(vehicle);
+
                 }
-            }
+                }
+            }catch(NumberFormatException e){
+            System.out.println("Error parsing " );
+
 
 
         } catch (IOException e) {

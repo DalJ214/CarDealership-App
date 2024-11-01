@@ -80,7 +80,7 @@ private  void processAllVehiclesRequest(){
         System.out.println("Enter VIN of the vehicle to remove: ");
         int vinToRemove = Integer.parseInt(scan.nextLine().trim());
 
-        boolean removed = vehicleList.removeIf(vehicle -> vehicle.getVin() == vinToRemove);
+        boolean removed = dealership.removeVehicle(vinToRemove);
 
         if (removed) {
             System.out.println("Vehicle with VIN " + vinToRemove + " removed successfully!");
@@ -243,27 +243,32 @@ private List<Vehicle> getVehiclesByPriceRange(double min, double max){
      return result;
 }
     private void addVehicle(Scanner scan) {
-        System.out.println("Enter VIN: ");
-        int vin = Integer.parseInt(scan.nextLine().trim());
-        System.out.println("Enter year: ");
-        int year = Integer.parseInt(scan.nextLine().trim());
-        System.out.println("Enter make: ");
-        String make = scan.nextLine().trim();
-        System.out.println("Enter model: ");
-        String model = scan.nextLine().trim();
-        System.out.println("Enter vehicle type: ");
-        String vehicleType = scan.nextLine().trim();
-        System.out.println("Enter color: ");
-        String color = scan.nextLine().trim();
-        System.out.println("Enter odometer reading: ");
-        int odometer = Integer.parseInt(scan.nextLine().trim());
-        System.out.println("Enter price: ");
-        double vehiclesByPrice = Double.parseDouble(scan.nextLine().trim());
+        try {
 
-        Vehicle newVehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, vehiclesByPrice);
-        vehicleList.add(newVehicle);
-        System.out.println("Vehicle added successfully!");
+
+            System.out.println("Enter VIN: ");
+            int vin = Integer.parseInt(scan.nextLine().trim());
+            System.out.println("Enter year: ");
+            int year = Integer.parseInt(scan.nextLine().trim());
+            System.out.println("Enter make: ");
+            String make = scan.nextLine().trim();
+            System.out.println("Enter model: ");
+            String model = scan.nextLine().trim();
+            System.out.println("Enter vehicle type: ");
+            String vehicleType = scan.nextLine().trim();
+            System.out.println("Enter color: ");
+            String color = scan.nextLine().trim();
+            System.out.println("Enter odometer reading: ");
+            int odometer = Integer.parseInt(scan.nextLine().trim());
+            System.out.println("Enter price: ");
+            double vehiclesByPrice = Double.parseDouble(scan.nextLine().trim());
+
+            Vehicle newVehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, vehiclesByPrice);
+            vehicleList.add(newVehicle);
+            System.out.println("Vehicle added successfully!");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter valid numbers");
+        }
+
     }
-
-
 }

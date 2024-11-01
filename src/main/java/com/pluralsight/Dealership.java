@@ -10,7 +10,7 @@ public class Dealership {
 
     private List<Vehicle> vehicles;
 
-    public Dealership() {
+    public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -22,8 +22,8 @@ public class Dealership {
 
     }
 
-    public void removeVehicle() {
-
+    public boolean removeVehicle(int vin) {
+            return vehicles.removeIf(vehicle -> vehicle.getVin() == vin );
 
     }
 //Methods
